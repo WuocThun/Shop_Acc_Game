@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\IndexController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout');
-});
+Route::get('/', [IndexController::class, 'home']);
+Route::get('/dich-vu', [IndexController::class, 'dichvu'])->name('dichvu');// tat ca dich vu thuoc game
+Route::get('/dich-vu/{slug}', [IndexController::class, 'dichvucon'])->name('dichvucon'); // dich vu con
+Route::get('/danh-muc', [IndexController::class, 'danhmuc'])->name('danhmuc'); // dich vu con
+Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuccon'])->name('danhmuccon'); // dich vu con
