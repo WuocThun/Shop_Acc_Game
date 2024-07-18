@@ -18,3 +18,7 @@ Route::get('/dich-vu', [IndexController::class, 'dichvu'])->name('dichvu');// ta
 Route::get('/dich-vu/{slug}', [IndexController::class, 'dichvucon'])->name('dichvucon'); // dich vu con
 Route::get('/danh-muc', [IndexController::class, 'danhmuc'])->name('danhmuc'); // dich vu con
 Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuccon'])->name('danhmuccon'); // dich vu con
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
