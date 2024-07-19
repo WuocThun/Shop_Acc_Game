@@ -37,20 +37,20 @@
 
 
                 <div class="row row-flex-safari game-list">
-                    @foreach($category as $cat)
+                    @foreach($category as $cate)
                         <div class="col-sm-3 col-xs-6 p-5">
                             <div class="classWithPad">
                                 <div class="news_image">
                                     <img
                                         style="position: absolute;max-width: 79px;height: auto;top: -5px;right: -6px;z-index: 1122;"
                                         src="{{asset('frontend/images/giam.png')}}"/>
-                                    <a href="{{route('danhmuc')}}" title="{{$cat->title}}" class="">
-                                        <img src="{{asset('uploads/category/'.$cat->image)}}"
-                                             alt="{{$cat->title}}"></a>
+                                    <a href="{{route('danhmuc',[$cate->slug])}}" title="{{$cate->title}}" class="">
+                                        <img src="{{asset('uploads/category/'.$cate->image)}}"
+                                             alt="{{$cate->title}}"></a>
                                 </div>
                                 <div class="news_title">
                                     <h2>
-                                        <a href="{{route('danhmuc')}}" title="{{$cat->title}}">{{$cat->title}}</a>
+                                        <a href="{{route('danhmuc',[$cate->slug])}}" title="{{$cate->title}}">{{$cate->title}}</a>
                                     </h2>
                                 </div>
                                 <div class="news_description">
@@ -66,7 +66,7 @@
                                         <div class="col-xs-12">
                                             <div class="custom72 view">
                                                 <a href="#" class=""
-                                                   title="{{$cat->title}}">
+                                                   title="{{$cate->title}}">
                                                     &nbsp;
                                                     <style type="text/css">
                                                         .custom72 {

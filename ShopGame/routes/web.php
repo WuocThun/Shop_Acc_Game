@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SliderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,14 +17,19 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [IndexController::class, 'home']);
-Route::get('/dich-vu', [IndexController::class, 'dichvu'])->name('dichvu');// tat ca dich vu thuoc game
-Route::get('/dich-vu/{slug}', [IndexController::class, 'dichvucon'])->name('dichvucon'); // dich vu con
-Route::get('/danh-muc', [IndexController::class, 'danhmuc'])->name('danhmuc'); // dich vu con
-Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuccon'])->name('danhmuccon'); // dich vu con
+Route::get( '/', [ IndexController::class, 'home' ] );
+Route::get( '/dich-vu', [ IndexController::class, 'dichvu' ] )
+     ->name( 'dichvu' );// tat ca dich vu thuoc game
+Route::get( '/dich-vu/{slug}', [ IndexController::class, 'dichvucon' ] )
+     ->name( 'dichvucon' ); // dich vu con
+Route::get( '/danh-muc-game/{slug}', [ IndexController::class, 'danhmuc' ] )
+     ->name( 'danhmuc' ); // dich vu con
+Route::get( '/danh-muc/{slug}', [ IndexController::class, 'danhmuccon' ] )
+     ->name( 'danhmuccon' ); // dich vu con
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get( '/home', [ HomeController::class, 'index' ] )->name( 'home' );
 //category
-Route::resource('/category', CategoryController::class);
+Route::resource( '/category', CategoryController::class );
+Route::resource( '/slider', SliderController::class );
