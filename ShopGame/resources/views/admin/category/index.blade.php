@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">Liệt kê danh sách Game</div>
 
@@ -19,10 +19,11 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <table class="table">
+                                <table id="myTable" class="table">
                                     <thead>
                                     <th scope="col">ID</th>
                                     <th scope="col">Tên danh mục</th>
+                                    <th scope="col">Slug</th>
                                     <th scope="col">Mô tả</th>
                                     <th scope="col">Hiển thị</th>
                                     <th scope="col">Hình ảnh</th>
@@ -32,8 +33,9 @@
                                     <tbody>
                                     @foreach($category as $key =>$cate )
                                         <tr>
-                                            <th scope="row">{{$cate->id}}</th>
+                                            <th scope="row">{{$key+1}}</th>
                                             <td>{{$cate->title}}</td>
+                                            <td>{{$cate->slug}}</td>
                                             <td>{{$cate->description}}</td>
                                             <td>
                                                 @if($cate->status == 1)
@@ -61,6 +63,10 @@
                             </tr>
                             </thead>
                         </table>
+{{--                            {{$category->links('pagination::boostrap-4')}}--}}
+                            {{$category->links('pagination::bootstrap-4')}}
+
+
                     </div>
                 </div>
             </div>

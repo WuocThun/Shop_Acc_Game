@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 class IndexController extends Controller {
 
     public function home() {
-        return view( 'pages.home' );
+        $category = Category::orderBy( 'id', 'desc' )->get();
+
+        return view( 'pages.home',compact('category'));
     }
 
     public function dichvu() {

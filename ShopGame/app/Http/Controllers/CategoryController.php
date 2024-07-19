@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
+//use Illuminate\Pagination;
 class  CategoryController extends Controller {
 
     /**
@@ -13,7 +14,7 @@ class  CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $category = Category::orderBy( 'id', 'desc' )->get();
+        $category = Category::orderBy( 'id', 'desc' )->paginate( 5 );
 
         return view( 'admin.category.index', compact( 'category' ) );
     }
@@ -35,23 +36,27 @@ class  CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store( Request $request ) {
-        $data = $request->validate(
+        $data                  = $request->validate(
             [
                 'title'       => 'required|unique:categories|max:255',
+                'slug'        => 'required|unique:categories|max:255',
                 'description' => 'required|max:255',
                 'image'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'status'      => 'required',
             ],
-            ['title.unique'=>'Tên danh mục đã có',
-                'title.required'=> 'Tên danh mục phải có',
-                'description.required'=> 'Mô tả đã tồn tại, hãy nhập mô tả',
-                'image.required'=> 'Phải có hình ảnh'
+            [
+                'title.unique'         => 'Tên danh mục đã có',
+                'title.required'       => 'Tên danh mục phải có',
+                'slug.unique'          => 'Tên Slug đã có',
+                'slug.required'        => 'Tên Slug phải có',
+                'description.required' => 'Mô tả đã tồn tại, hãy nhập mô tả',
+                'image.required'       => 'Phải có hình ảnh',
 
-        ]
+            ]
         );
         $data                  = $request->all();
         $category              = new Category();
-        $category->image       = '1.jpg';
+        $category->slug        = $data['slug'];
         $category->title       = $data['title'];
         $category->description = $data['description'];
         $category->status      = $data['status'];
@@ -64,7 +69,9 @@ class  CategoryController extends Controller {
         $get_image->move( $path, $new_image );
         $category->image = $new_image;
         $category->save();
-        return redirect()->route('category.index')->with('status','Thêm thành công');
+
+        return redirect()->route( 'category.index' )
+                         ->with( 'status', 'Thêm thành công' );
     }
 
     /**
@@ -100,22 +107,25 @@ class  CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update( Request $request, $id ) {
-        $data = $request->validate(
+        $data                  = $request->validate(
             [
-                'title'       => 'required|unique:categories|max:255',
+                'title'       => 'required|max:255',
+                'slug'        => 'required|max:255',
                 'description' => 'required|max:255',
                 'status'      => 'required',
             ],
-            ['title.unique'=>'Tên danh mục đã có',
-             'title.required'=> 'Tên danh mục phải có',
-             'description.required'=> 'Mô tả đã tồn tại, hãy nhập mô tả',
+            [
+                'slug.unique'          => 'Tên slug đã có',
+                'title.required'       => 'Tên danh mục phải có',
+                'slug.required'        => 'Tên Slug phải có',
+                'description.required' => 'Mô tả đã tồn tại, hãy nhập mô tả',
 
             ]
         );
         $data                  = $request->all();
         $category              = Category::find( $id );
-        $category->image       = '1.jpg';
         $category->title       = $data['title'];
+        $category->slug        = $data['slug'];
         $category->description = $data['description'];
         $category->status      = $data['status'];
         $get_image             = $request->image;
@@ -134,7 +144,7 @@ class  CategoryController extends Controller {
         }
         $category->save();
 
-        return redirect()->back()->with('status','Cập nhật thành công');
+        return redirect()->back()->with( 'status', 'Cập nhật thành công' );
     }
 
     /**

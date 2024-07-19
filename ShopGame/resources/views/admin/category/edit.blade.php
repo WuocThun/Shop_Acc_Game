@@ -31,7 +31,10 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Title</label>
-                                <input type="text" name="title" required class="form-control" value="{{$category->title}}" id="">
+                                <input type="text" name="title" required class="form-control" value="{{$category->title}}" onkeyup="ChangeToSlug();" id="slug">
+                            </div>  <div class="form-group">
+                                <label for="exampleInputEmail1">slug</label>
+                                <input type="text" name="slug" required class="form-control" value="{{$category->slug}}" id="convert_slug">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Image</label> <br>

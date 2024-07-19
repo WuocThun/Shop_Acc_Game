@@ -28,7 +28,11 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Title</label>
-                                <input type="text" name="title"  class="form-control" placeholder="...." id="">
+                                <input type="text" name="title"  class="form-control" placeholder="...." onkeyup="ChangeToSlug();" id="slug">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Slug</label>
+                                <input type="text" name="slug"  class="form-control" placeholder="...." id="convert_slug">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Image</label> <br>
