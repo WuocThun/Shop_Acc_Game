@@ -12,6 +12,8 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('category.index')}}">Danh mục game</a>
+        </li>   <li class="nav-item active">
+            <a class="nav-link" href="{{route('blog.index')}}">Blog</a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="#">Dịch vụ game</a>

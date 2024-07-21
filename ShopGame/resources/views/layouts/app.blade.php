@@ -9,7 +9,14 @@
 
     <title> Admin Web AccGame
     </title>
+    <script src="{{ asset('frontend/ckeditor/ckeditor.js') }} " type="text/javascript"></script>
+    </script>
 
+    <script>
+
+        CKEDITOR.replace('cont_blog');
+        CKEDITOR.replaceAll('des_blog');
+    </script>
     <!-- Scripts -->
     <script src="{{ asset('frontend/js/app.js') }}" defer></script>
 
@@ -23,6 +30,7 @@
     //cdn.datatables.net/2.1.0/css/dataTables.dataTables.min.css
     ">
     <link href="{{ asset('frontend/css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -88,22 +96,23 @@
         @yield('content')
     </main>
 </div>
+</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="//cdn.datatables.net/2.1.0/js/dataTables.min.js"></script>
+{{--<script src="//cdn.datatables.net/2.1.0/js/dataTables.min.js"></script>--}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
         integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
         crossorigin="anonymous"></script>
+
 <script type="text/javascript">
     let table = new DataTable('#myTable');
 </script>
 <script type="text/javascript">
 
-    function ChangeToSlug()
-    {
+    function ChangeToSlug() {
         var slug;
 
         //Lấy text từ thẻ input title
-        slug = document.getElementById("slug").value;
+        slug = document.getElementById('slug').value;
         slug = slug.toLowerCase();
         //Đổi ký tự có dấu thành không dấu
         slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
@@ -116,7 +125,7 @@
         //Xóa các ký tự đặt biệt
         slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
         //Đổi khoảng trắng thành ký tự gạch ngang
-        slug = slug.replace(/ /gi, "-");
+        slug = slug.replace(/ /gi, '-');
         //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
         //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
         slug = slug.replace(/\-\-\-\-\-/gi, '-');
@@ -131,8 +140,7 @@
     }
 
 
-
-
 </script>
+
 </body>
 </html>

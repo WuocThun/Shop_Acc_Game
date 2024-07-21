@@ -25,13 +25,13 @@ class IndexController extends Controller {
     public function dichvucon( $slug ) {
         $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
 
-        return view( 'pages.sub_services', compact( 'slug' ,'slider') );
+        return view( 'pages.sub_services', compact( 'slug', 'slider' ) );
     }
 
     public function danhmuc( $slug ) {
         $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
 
-        return view( 'pages.category', compact( 'slug' ,'slider' ) );
+        return view( 'pages.category', compact( 'slug', 'slider' ) );
     }
 
     public function danhmuccon( $slug ) {
@@ -39,5 +39,7 @@ class IndexController extends Controller {
 
         return view( 'pages.sub_category', compact( 'slug', 'slider' ) );
     }
+
+
 
 }
