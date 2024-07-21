@@ -24,7 +24,7 @@
                             </div>
                         @endif
                         <a href="{{route('slider.index')}}" class="btn btn-info">Danh sách Slider game</a>
-                        <a href="{{route('slider.create')}}" class="btn btn-success">Danh sách Slider game</a>
+                        <a href="{{route('slider.create')}}" class="btn btn-success">Thêm Slider game</a>
 
                         <form action="{{route('slider.update',$slider->id)}}" method="post"
                               enctype="multipart/form-data">
