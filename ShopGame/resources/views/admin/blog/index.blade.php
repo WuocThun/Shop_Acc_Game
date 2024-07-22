@@ -23,11 +23,9 @@
                                     <thead>
                                     <th scope="col">ID</th>
                                     <th scope="col">Tên danh mục</th>
-                                    <th scope="col">Slug</th>
                                     <th scope="col">Mô tả</th>
                                     <th scope="col">Hiển thị</th>
                                     <th scope="col">Hình ảnh</th>
-                                    <th scope="col">Quản lý</th>
                                     <th scope="col">Hành động</th>
                                     </thead>
                                     <tbody>
@@ -35,7 +33,6 @@
                                         <tr>
                                             <th scope="row">{{$key+1}}</th>
                                             <td>{{$cate->title}}</td>
-                                            <td>{{$cate->slug}}</td>
                                             <td>{{$cate->description}}</td>
                                             <td>
                                                 @if($cate->status == 1)
@@ -46,15 +43,14 @@
                                             </td>
                                             <td><img width="200px" height="100px"
                                                      src="{{asset('uploads/blog/'.$cate->image)}}" alt=""></td>
-                                            <td></td>
-                                            <td>
+                                            <TD>
                                                 <a class="btn btn-warning"  href="{{route('blog.edit',$cate->id)}}">Sửa</a>
                                                 <form method="post"  action="{{route('blog.destroy',[$cate->id])}}">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button onclick="return confirm('Bạn có muốn xoá?')" class="btn btn-danger">Xoá</button>
                                                 </form>
-                                            </td>
+                                            </TD>
                                         </tr>
                                     @endforeach
                                     </tbody>
