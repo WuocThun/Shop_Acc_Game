@@ -40,13 +40,18 @@ class IndexController extends Controller {
 
         return view( 'pages.sub_category', compact( 'slug', 'slider' ) );
     }
-    public  function blogs() {
-        $blog = Blog::orderBy( 'id', 'desc' )->paginate( 10 );
+
+    public function blogs() {
+        $blog   = Blog::orderBy( 'id', 'desc' )->paginate( 10 );
         $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
 
-        return view( 'pages.blog',compact('slider','blog') );
-
+        return view( 'pages.blog', compact( 'slider', 'blog' ) );
     }
 
+    public function blog_detail( $slug ) {
+        $blog   = Blog::where( 'slug', $slug )->first();
+        $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
+        return view( 'pages.blog_details', compact( 'slider', 'blog' ) );
+    }
 
 }

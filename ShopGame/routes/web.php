@@ -28,7 +28,7 @@ Route::get( '/danh-muc-game/{slug}', [ IndexController::class, 'danhmuc' ] )
 Route::get( '/danh-muc/{slug}', [ IndexController::class, 'danhmuccon' ] )
      ->name( 'danhmuccon' ); // dich vu con
 Route::get('/blogs',[IndexController::class, 'blogs'])->name( 'blogs' );
-
+Route::get('/blogs/{slug}',[IndexController::class, 'blog_detail'])->name( 'blog_detail' );
 Auth::routes();
 
 Route::get( '/home', [ HomeController::class, 'index' ] )->name( 'home' );

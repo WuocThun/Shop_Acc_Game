@@ -11,6 +11,6 @@ class Blog extends Model
     public $timestamps = false;
     protected $table = 'blogs';
     protected $fillable= [
-        'title','slug', 'description', 'image', 'status', 'content'
+        'title','slug', 'description', 'image', 'status', 'content','dateposted'
     ];
 }

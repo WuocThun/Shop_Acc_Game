@@ -19,40 +19,40 @@
         </div>
         <div class="c-content-box c-size-md">
             <div class="container">
-                <form class="form-horizontal form-find m-b-20" role="form" method="get" data-hs-cf-bound="true">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control c-square c-theme" name="key" autocomplete="off"
-                                   autofocus="" placeholder="Nhập từ khóa..." value="" style="width: 100%">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" value="Tìm kiếm">
-                            <a class="btn c-btn-square m-b-10 btn-danger" href="https://nick.vn/blog">Tất cả</a>
-                        </div>
-                    </div>
-                </form>
+{{--                <form class="form-horizontal form-find m-b-20" role="form" method="get" data-hs-cf-bound="true">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-4">--}}
+{{--                            <input type="text" class="form-control c-square c-theme" name="key" autocomplete="off"--}}
+{{--                                   autofocus="" placeholder="Nhập từ khóa..." value="" style="width: 100%">--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-4">--}}
+{{--                            <input type="submit" class="btn c-theme-btn c-btn-square m-b-10" value="Tìm kiếm">--}}
+{{--                            <a class="btn c-btn-square m-b-10 btn-danger" href="https://nick.vn/blog">Tất cả</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
                 <div class="row">
                     <div class="col-md-9">
                         <div class="art-list">
                             @foreach($blog as $blog)
                                 <div class="a-item">
                                     <div class="thumbnail-image img-thumbnail">
-                                        <a href="{{route('blog.show',$blog->slug)}}"><img
+                                        <a href="{{route('blog_detail',$blog->slug)}}"><img
                                                 src="{{asset('uploads/blog/'.$blog->image)}}" alt="png-image"></a>
                                     </div>
                                     <div class="info">
                                         <div class="article_title ">
-                                            <h2><a href="{{route('blog.show',$blog->slug)}}"
+                                            <h2><a href="{{route('blog_detail',$blog->slug)}}"
                                                    style="text-transform: initial;"> {{$blog->title}} </a></h2>
                                         </div>
-{{--                                        <div class="article_cat_date">--}}
-{{--                                            <div style="display: inline-block;margin-right: 15px"><i--}}
-{{--                                                    class="fa fa-calendar" aria-hidden="true"></i> 25/01/2022--}}
-{{--                                            </div>--}}
+                                        <div class="article_cat_date">
+                                            <div style="display: inline-block;margin-right: 15px"><i
+                                                    class="fa fa-calendar" aria-hidden="true"></i> {{$blog->dateposted}}
+                                            </div>
 {{--                                            <div style="display: inline-block"><i class="fa fa-newspaper-o"--}}
 {{--                                                                                  aria-hidden="true"></i> <a--}}
 {{--                                                    href="/blog/huong-dan" title="Hướng Dẫn">Hướng Dẫn</a></div>--}}
-{{--                                        </div>--}}
+                                        </div>
                                         <div class="article_description hidden-xs">{{$blog->description}}
                                         </div>
                                     </div>
