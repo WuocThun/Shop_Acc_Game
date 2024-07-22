@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Blog;
 use App\Models\Slider;
 
 class IndexController extends Controller {
@@ -39,7 +40,13 @@ class IndexController extends Controller {
 
         return view( 'pages.sub_category', compact( 'slug', 'slider' ) );
     }
+    public  function blogs() {
+        $blog = Blog::orderBy( 'id', 'desc' )->paginate( 10 );
+        $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
 
+        return view( 'pages.blog',compact('slider','blog') );
+
+    }
 
 
 }

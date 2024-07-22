@@ -32,6 +32,10 @@
                                        onkeyup="ChangeToSlug();" id="slug">
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputEmail1">Slug</label>
+                                <input type="text" name="slug"  class="form-control" placeholder="...." id="convert_slug">
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleInputEmail1">Image</label> <br>
                                 <input type="file" name="image" class="form-control-image" placeholder="...."
                                        id="">

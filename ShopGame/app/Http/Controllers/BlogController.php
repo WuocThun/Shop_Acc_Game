@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
-{
+use Carbon\Carbon;
+
+class BlogController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $blog = Blog::orderBy( 'id', 'desc' )->paginate( 5 );
 
-        return view( 'admin.blog.index',compact('blog') );
-
+        return view( 'admin.blog.index', compact( 'blog' ) );
     }
 
     /**
@@ -25,21 +25,19 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view( 'admin.blog.create' );
-
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $data                = $request->validate(
+    public function store( Request $request ) {
+        $data              = $request->validate(
             [
                 'title'       => 'required|unique:categories|max:255',
                 'description' => 'required|max:255',
@@ -54,18 +52,20 @@ class BlogController extends Controller
 
             ]
         );
-        $data                = $request->all();
+        $data              = $request->all();
         $blog              = new Blog();
         $blog->title       = $data['title'];
         $blog->description = $data['description'];
         $blog->status      = $data['status'];
-        $blog->content      = $data['content'];
-        $get_image           = $request->image;
-        $path                = 'uploads/blog/';
-        $get_name_image      = $get_image->getClientOriginalName();
-        $name_image          = current( explode( '.', $get_name_image ) );
-        $new_image           = $name_image . rand( 0, 99 ) . '.'
-                               . $get_image->getClientOriginalExtension();
+        $blog->slug        = $data['slug'];
+        $blog->dateposted   = Carbon::now();
+        $blog->content     = $data['content'];
+        $get_image         = $request->image;
+        $path              = 'uploads/blog/';
+        $get_name_image    = $get_image->getClientOriginalName();
+        $name_image        = current( explode( '.', $get_name_image ) );
+        $new_image         = $name_image . rand( 0, 99 ) . '.'
+                             . $get_image->getClientOriginalExtension();
         $get_image->move( $path, $new_image );
         $blog->image = $new_image;
         $blog->save();
@@ -78,10 +78,10 @@ class BlogController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show( $id ) {
         //
     }
 
@@ -89,10 +89,10 @@ class BlogController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit( $id ) {
         $blog = blog::find( $id );
 
         return view( 'admin.blog.edit', compact( 'blog' ) );
@@ -102,12 +102,12 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int                       $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        $data                  = $request->validate(
+    public function update( Request $request, $id ) {
+        $data              = $request->validate(
             [
                 'title'       => 'required|max:255',
                 'description' => 'required|max:255',
@@ -119,13 +119,15 @@ class BlogController extends Controller
 
             ]
         );
-        $data                  = $request->all();
+        $data              = $request->all();
         $blog              = blog::find( $id );
         $blog->title       = $data['title'];
+        $blog->slug        = $data['slug'];
         $blog->description = $data['description'];
         $blog->status      = $data['status'];
-        $blog->content      = $data['content'];
-        $get_image             = $request->image;
+
+        $blog->content = $data['content'];
+        $get_image     = $request->image;
         if ( $get_image ) {
             $path_unlink = 'uploads/blog/' . $blog->image;
             if ( file_exists( $path_unlink ) ) {
@@ -148,11 +150,11 @@ class BlogController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $blog    = blog::find( $id );
+    public function destroy( $id ) {
+        $blog        = blog::find( $id );
         $path_unlink = 'uploads/blog/' . $blog->image;
         if ( file_exists( $path_unlink ) ) {
             unlink( $path_unlink );
@@ -161,4 +163,5 @@ class BlogController extends Controller
 
         return redirect()->back();
     }
+
 }

@@ -35,11 +35,11 @@
                                 <input type="text" name="title" required class="form-control" value="{{$blog->title}}"
                                        onkeyup="ChangeToSlug();" id="slug">
                             </div>
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputEmail1">slug</label>--}}
-{{--                                <input type="text" name="slug" required class="form-control" value="{{$blog->slug}}"--}}
-{{--                                       id="convert_slug">--}}
-{{--                            </div>--}}
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">slug</label>
+                                                            <input type="text" name="slug" required class="form-control" value="{{$blog->slug}}"
+                                                                   id="convert_slug">
+                                                        </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Image</label> <br>
 
@@ -52,11 +52,13 @@
                                 <textarea class="form-control" required name="description"
                                           id="exampleFormControlTextarea1"
                                           rows="3">{{$blog->description}}</textarea>
-                            </div> <div class="form-group">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="exampleInputPassword1">Content</label>
                                 <textarea class="form-control" required name="content"
                                           id="exampleFormControlTextarea1"
-                                          rows="3">{{$blog->description}}</textarea>
+                                          rows="3">{{$blog->content}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Status</label>

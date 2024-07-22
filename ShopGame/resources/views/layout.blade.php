@@ -291,20 +291,8 @@
                             <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
                                     class="c-arrow c-toggler"></span></a>
                             <ul id="children-of-42" class="dropdown-menu c-menu-type-classic c-pull-left ">
-                                <li class="c-menu-type-classic"><a rel="" href="/blog" class="">Blog</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/uy-tin-cua-shop" class="">UY T&Iacute;N
-                                        CỦA SHOP</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/danh-sach-gdv-group" class="">Danh S&aacute;ch
-                                        GDV group</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/dich-vu-game" class="">Dịch Vụ Game</a>
-                                </li>
-                                <li class="c-menu-type-classic"><a rel=""
-                                                                   href="https://nick.vn/blog/dieu-khoan-su-dung-website-nickvn"
-                                                                   class="">Điều khoản sử dụng website</a></li>
-                                <li class="c-menu-type-classic"><a rel=""
-                                                                   href="https://nick.vn/blog/chinh-sach-tai-nickvn"
-                                                                   class="">Ch&iacute;nh s&aacute;ch tại Nick.vn</a>
-                                </li>
+                                <li class="c-menu-type-classic"><a rel="" href="{{route('blogs')}}" class="">Blog</a></li>
+
                             </ul>
                         </li>
                         <li><a href="/login"
@@ -343,20 +331,7 @@
                             <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
                                     class="c-arrow c-toggler"></span></a>
                             <ul id="children-of-42" class="dropdown-menu c-menu-type-classic c-pull-left ">
-                                <li class="c-menu-type-classic"><a rel="" href="/blog" class="">Blog</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/uy-tin-cua-shop" class="">UY T&Iacute;N
-                                        CỦA SHOP</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/danh-sach-gdv-group" class="">Danh S&aacute;ch
-                                        GDV group</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/dich-vu-game" class="">Dịch Vụ Game</a>
-                                </li>
-                                <li class="c-menu-type-classic"><a rel=""
-                                                                   href="https://nick.vn/blog/dieu-khoan-su-dung-website-nickvn"
-                                                                   class="">Điều khoản sử dụng website</a></li>
-                                <li class="c-menu-type-classic"><a rel=""
-                                                                   href="https://nick.vn/blog/chinh-sach-tai-nickvn"
-                                                                   class="">Ch&iacute;nh s&aacute;ch tại Nick.vn</a>
-                                </li>
+                                <li class="c-menu-type-classic"><a rel="" href="/blogs" class="">Blog</a></li>
                             </ul>
                         </li>
                         <li><a href="/login"

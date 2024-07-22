@@ -25,6 +25,7 @@
                                     <th scope="col">Tên danh mục</th>
                                     <th scope="col">Mô tả</th>
                                     <th scope="col">Hiển thị</th>
+                                    <th scope="col">Ngày đăng</th>
                                     <th scope="col">Hình ảnh</th>
                                     <th scope="col">Hành động</th>
                                     </thead>
@@ -41,6 +42,8 @@
                                                     Không hiện thị
                                                 @endif
                                             </td>
+                                            <td>{{$cate->dateposted}}</td>
+
                                             <td><img width="200px" height="100px"
                                                      src="{{asset('uploads/blog/'.$cate->image)}}" alt=""></td>
                                             <TD>

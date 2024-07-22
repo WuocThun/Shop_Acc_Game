@@ -20,7 +20,7 @@ class CreateCustomerTable extends Migration
             $table->string('phone', 255)->nullable();
             $table->string('avatar', 255)->nullable();
             $table->string('balance', 255);
-            $table->integer('status');
+            $table->integer('status')->useCurrent();
         });
     }
 
