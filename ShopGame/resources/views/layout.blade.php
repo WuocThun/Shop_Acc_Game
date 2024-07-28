@@ -288,7 +288,7 @@
                                                                    class="">Hướng dẫn nạp ATM tự động</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{route('video_hightlight')}}" class="c-link dropdown-toggle">Videos</a></li>
+{{--                        <li><a href="{{route('video_hightlight')}}" class="c-link dropdown-toggle">Videos</a></li>--}}
                         <li class="c-menu-type-classic">
                             <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
                                     class="c-arrow c-toggler"></span></a>
@@ -401,19 +401,19 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('.load-modal').each(function (index, elem) {
-            $(elem).unbind().click(function (e) {
-                e.preventDefault();
-                e.preventDefault();
-                var curModal = $('#LoadModal');
-                curModal.find('.modal-content').html('<div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;"></div>');
-                curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
-            });
-        });
-    });
-</script>
+{{--<script>--}}
+{{--    $(document).ready(function () {--}}
+{{--        $('.load-modal').each(function (index, elem) {--}}
+{{--            $(elem).unbind().click(function (e) {--}}
+{{--                e.preventDefault();--}}
+{{--                e.preventDefault();--}}
+{{--                var curModal = $('#LoadModal');--}}
+{{--                curModal.find('.modal-content').html('<div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;"></div>');--}}
+{{--                curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));--}}
+{{--            });--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 <!-- END: PAGE CONTAINER -->
 <a name="footer"></a>
 <footer class="c-layout-footer c-layout-footer-3 c-bg-dark">
