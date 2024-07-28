@@ -35,11 +35,11 @@
                                 <input type="text" name="title" required class="form-control" value="{{$blog->title}}"
                                        onkeyup="ChangeToSlug();" id="slug">
                             </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">slug</label>
-                                                            <input type="text" name="slug" required class="form-control" value="{{$blog->slug}}"
-                                                                   id="convert_slug">
-                                                        </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">slug</label>
+                                <input type="text" name="slug" required class="form-control" value="{{$blog->slug}}"
+                                       id="convert_slug">
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Image</label> <br>
 
@@ -66,11 +66,19 @@
                                     @if($blog->status === 1)
                                         <option value="1" selected>Hiển thị</option>
                                         <option value="0">Không hiển thị</option>
-
                                     @else
                                         <option value="1">Hiển thị</option>
                                         <option value="0" selected>Không hiển thị</option>
-
+                                    @endif
+                                </select>
+                                <label for="exampleFormControlSelect1">Loại tin</label>
+                                <select required class="form-control" name="status">
+                                    @if($blog->kind_of_blog === "blogs")
+                                        <option value="blogs" selected>Blog</option>
+                                        <option value="huongdan">Hướng dẫn</option>
+                                    @else
+                                        <option value="blogs">Blog</option>
+                                        <option value="huongdan" selected>Hướng dẫn</option>
                                     @endif
                                 </select>
                             </div>

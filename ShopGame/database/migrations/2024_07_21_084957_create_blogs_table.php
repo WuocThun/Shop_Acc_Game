@@ -21,6 +21,7 @@ class CreateBlogsTable extends Migration {
             $table->longText( 'content' );
             $table->integer( 'status' );
             $table->date('dateposted');
+            $table->string( 'kind_of_blog','40');
         } );
     }
 

@@ -25,6 +25,7 @@
                                     <th scope="col">Tên danh mục</th>
                                     <th scope="col">Mô tả</th>
                                     <th scope="col">Hiển thị</th>
+                                    <th scope="col">Loại tin</th>
                                     <th scope="col">Ngày đăng</th>
                                     <th scope="col">Hình ảnh</th>
                                     <th scope="col">Hành động</th>
@@ -40,6 +41,13 @@
                                                     Hiển thị
                                                 @else
                                                     Không hiện thị
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($cate->kind_of_blog == "blogs")
+                                                    Blog
+                                                @else
+                                                    Hướng dẫn
                                                 @endif
                                             </td>
                                             <td>{{$cate->dateposted}}</td>

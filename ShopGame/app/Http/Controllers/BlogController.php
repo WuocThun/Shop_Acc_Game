@@ -56,6 +56,7 @@ class BlogController extends Controller {
         $blog              = new Blog();
         $blog->title       = $data['title'];
         $blog->description = $data['description'];
+        $blog->kind_of_blog = $data['kind_of_blog'];
         $blog->status      = $data['status'];
         $blog->slug        = $data['slug'];
         $blog->dateposted   = Carbon::now();
@@ -125,6 +126,7 @@ class BlogController extends Controller {
         $blog->slug        = $data['slug'];
         $blog->description = $data['description'];
         $blog->status      = $data['status'];
+        $blog->kind_of_blog = $data['kind_of_blog'];
 
         $blog->content = $data['content'];
         $get_image     = $request->image;

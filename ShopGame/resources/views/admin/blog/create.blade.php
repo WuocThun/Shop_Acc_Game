@@ -59,6 +59,13 @@
                                     <option value="0">Không hiển thị</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Loại tin</label>
+                                <select class="form-control" name="kind_of_blog">
+                                    <option value="blogs">Blog</option>
+                                    <option value="huongdan">Hướng dẫn</option>
+                                </select>
+                            </div>
 
                             <button type="submit" class="btn btn-primary">Add</button>
                         </form>

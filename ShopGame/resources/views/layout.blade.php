@@ -291,8 +291,13 @@
                             <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
                                     class="c-arrow c-toggler"></span></a>
                             <ul id="children-of-42" class="dropdown-menu c-menu-type-classic c-pull-left ">
-                                <li class="c-menu-type-classic"><a rel="" href="{{route('blogs')}}" class="">Blog</a></li>
-
+                                <li class="c-menu-type-classic"><a rel="" href="{{route('blogs')}}" class="">Blog</a>
+                                </li>
+{{--                                @foreach($blog_huongdan as $key => $bloghd)--}}
+{{--                                    <li class="c-menu-type-classic"><a rel=""--}}
+{{--                                                                       href="{{route('blog_detail',[$bloghd->slug])}}"--}}
+{{--                                                                       class="">{{$bloghd->titile}}</a></li>--}}
+{{--                                @endforeach--}}
                             </ul>
                         </li>
                         <li><a href="/login"
@@ -364,16 +369,17 @@
         <div id="slider" class="owl-theme section section-cate slideshow_full_width ">
             <div id="slide_banner" class="owl-carousel">
                 @foreach($slider as $slider => $sli)
-                <div class="item">
-                    <a href="/" alt="{{$sli->title}}">
-                        <img src="{{asset('uploads/slider/'.$sli->image)}}" width="100%" height="400px" alt="{{$sli->title}}">
-                    </a>
-                </div>
+                    <div class="item">
+                        <a href="/" alt="{{$sli->title}}">
+                            <img src="{{asset('uploads/slider/'.$sli->image)}}" width="100%" height="400px"
+                                 alt="{{$sli->title}}">
+                        </a>
+                    </div>
                 @endforeach
             </div>
         </div>
     </div>
-{{-----------Main-----------}}
+    {{-----------Main-----------}}
     @yield('content')
 
     <div class="modal fade" id="noticeModal" role="dialog" style="display: none;" aria-hidden="true">
