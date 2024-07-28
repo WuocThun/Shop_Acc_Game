@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\AccessoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,4 @@ Route::resource('/category', CategoryController::class);
 Route::resource('/slider', SliderController::class);
 Route::resource('/blog', BlogController::class);
 Route::resource('/video', VideoController::class);
+Route::resource('/accessories', AccessoriesController::class);

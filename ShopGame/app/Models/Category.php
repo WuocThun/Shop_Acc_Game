@@ -13,4 +13,7 @@ class Category extends Model
     protected $fillable= [
         'title', 'description', 'image', 'status', 'order_category'
     ];
+    public function accessories(){
+        //        return $this->belongsTo(Category::class, 'belongstogame', 'id');
+        return $this->belongsTo(Category::class);}
 }

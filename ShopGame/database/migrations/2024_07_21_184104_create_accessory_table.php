@@ -13,7 +13,7 @@ class CreateAccessoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('accessory', function (Blueprint $table) {
+        Schema::create('accessories', function (Blueprint $table) {
             $table->id();
             $table->string('title',255);
             $table->integer('status');
@@ -28,6 +28,6 @@ class CreateAccessoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accessory');
+        Schema::dropIfExists('accessories');
     }
 }

@@ -16,7 +16,11 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('video.create')}}">Video</a>
-        </li>  <li class="nav-item active">
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{route('accessories.index')}}">Phụ kiện</a>
+        </li>
+        <li class="nav-item active">
             <a class="nav-link" href="{{route('blog.index')}}">Blog</a>
         </li>
         <li class="nav-item active">
