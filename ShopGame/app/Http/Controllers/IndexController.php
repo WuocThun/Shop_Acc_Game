@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Blog;
 use App\Models\Slider;
 use App\Models\Video;
+
+
 class IndexController extends Controller {
 
     public function home() {
@@ -42,20 +44,40 @@ class IndexController extends Controller {
     }
 
     public function blogs() {
-        $blog   = Blog::orderBy( 'id', 'desc' )->paginate( 10 );
-//        $blog_huongdan   = Blog::orderBy( 'id', 'desc' )->where( 'kind_of_blog', 'huongdan' )->get();
+        $blog = Blog::orderBy( 'id', 'desc' )->paginate( 10 );
+        //        $blog_huongdan   = Blog::orderBy( 'id', 'desc' )->where( 'kind_of_blog', 'huongdan' )->get();
         $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
 
         return view( 'pages.blog', compact( 'slider', 'blog'
-//            ,'blog_huongdan'
+        //            ,'blog_huongdan'
         ) );
     }
 
+    public function video_hightlight() {
+        $slider   = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )
+                          ->get();
+        $category = Category::orderBy( 'id', 'desc' )->get();
+        $video    = Video::orderBy( 'id', 'desc' )->where( 'status', 1 )
+                         ->paginate( 5 );
+
+        return view( 'pages.video', compact( 'category', 'slider', 'video' ) );
+    }
+
     public function blog_detail( $slug ) {
-        $blog   = Blog::where( 'slug', $slug )->first();
-//        $blog_huongdan   = Blog::orderBy( 'id', 'desc' )->where( 'kind_of_blog', 'huongdan' )->get();
+        $blog = Blog::where( 'slug', $slug )->first();
+        //        $blog_huongdan   = Blog::orderBy( 'id', 'desc' )->where( 'kind_of_blog', 'huongdan' )->get();
         $slider = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
+
         return view( 'pages.blog_details', compact( 'slider', 'blog' ) );
+    }    public function show_video( Request $request ) {
+        $data = $request->all();
+        $video = Video::find( $data['id']);
+        $output['video_title'] = $video->title;
+        $output['video_description'] = $video->description;
+        $output['video_link'] = $video->link;
+        echo json_encode($output);
+
+
     }
 
 }

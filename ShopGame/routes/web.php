@@ -19,23 +19,26 @@ use App\Http\Controllers\VideoController;
 |
 */
 
-Route::get( '/', [ IndexController::class, 'home' ] );
-Route::get( '/dich-vu', [ IndexController::class, 'dichvu' ] )
-     ->name( 'dichvu' );// tat ca dich vu thuoc game
-Route::get( '/dich-vu/{slug}', [ IndexController::class, 'dichvucon' ] )
-     ->name( 'dichvucon' ); // dich vu con
-Route::get( '/danh-muc-game/{slug}', [ IndexController::class, 'danhmuc' ] )
-     ->name( 'danhmuc' ); // dich vu con
-Route::get( '/danh-muc/{slug}', [ IndexController::class, 'danhmuccon' ] )
-     ->name( 'danhmuccon' ); // dich vu con
-Route::get( '/blogs', [ IndexController::class, 'blogs' ] )->name( 'blogs' );
-Route::get( '/blogs/{slug}', [ IndexController::class, 'blog_detail' ] )
-     ->name( 'blog_detail' );
+Route::get('/', [IndexController::class, 'home']);
+Route::get('/dich-vu', [IndexController::class, 'dichvu'])
+     ->name('dichvu');// tat ca dich vu thuoc game
+Route::get('/dich-vu/{slug}', [IndexController::class, 'dichvucon'])
+     ->name('dichvucon'); // dich vu con
+Route::get('/danh-muc-game/{slug}', [IndexController::class, 'danhmuc'])
+     ->name('danhmuc'); // dich vu con
+Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuccon'])
+     ->name('danhmuccon'); // dich vu con
+Route::get('/blogs', [IndexController::class, 'blogs'])->name('blogs');;
+Route::get('/videos', [IndexController::class, 'video_hightlight'])->name('video_hightlight');
+Route::get('/show_video', [IndexController::class, 'show_video'])
+     ->name('show_video');
+Route::get('/blogs/{slug}', [IndexController::class, 'blog_detail'])
+     ->name('blog_detail');
 Auth::routes();
 
-Route::get( '/home', [ HomeController::class, 'index' ] )->name( 'home' );
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 //category
-Route::resource( '/category', CategoryController::class );
-Route::resource( '/slider', SliderController::class );
-Route::resource( '/blog', BlogController::class );
-Route::resource( '/video', VideoController::class );
+Route::resource('/category', CategoryController::class);
+Route::resource('/slider', SliderController::class);
+Route::resource('/blog', BlogController::class);
+Route::resource('/video', VideoController::class);

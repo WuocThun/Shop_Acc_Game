@@ -11,6 +11,7 @@
     <link rel="canonical" href="https://nick.vn"/>
     <meta content="" name="author"/>
     <meta property="og:type" content="website"/>
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <meta property="og:url" content=""/>
     <meta property="og:title" content="Web Bán Nick, Có Đủ Mọi Loại Game Hót Thịnh Hành Nick.vn"/>
     <meta property="og:description"
@@ -287,17 +288,18 @@
                                                                    class="">Hướng dẫn nạp ATM tự động</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{route('video_hightlight')}}" class="c-link dropdown-toggle">Videos</a></li>
                         <li class="c-menu-type-classic">
                             <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
                                     class="c-arrow c-toggler"></span></a>
                             <ul id="children-of-42" class="dropdown-menu c-menu-type-classic c-pull-left ">
                                 <li class="c-menu-type-classic"><a rel="" href="{{route('blogs')}}" class="">Blog</a>
                                 </li>
-{{--                                @foreach($blog_huongdan as $key => $bloghd)--}}
-{{--                                    <li class="c-menu-type-classic"><a rel=""--}}
-{{--                                                                       href="{{route('blog_detail',[$bloghd->slug])}}"--}}
-{{--                                                                       class="">{{$bloghd->titile}}</a></li>--}}
-{{--                                @endforeach--}}
+                                {{--                                @foreach($blog_huongdan as $key => $bloghd)--}}
+                                {{--                                    <li class="c-menu-type-classic"><a rel=""--}}
+                                {{--                                                                       href="{{route('blog_detail',[$bloghd->slug])}}"--}}
+                                {{--                                                                       class="">{{$bloghd->titile}}</a></li>--}}
+                                {{--                                @endforeach--}}
                             </ul>
                         </li>
                         <li><a href="/login"
@@ -333,7 +335,7 @@
                             </ul>
                         </li>
                         <li class="c-menu-type-classic">
-                            <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
+                            <a rel="" href="#" class="c-link dropdown-toggle ">Video<span
                                     class="c-arrow c-toggler"></span></a>
                             <ul id="children-of-42" class="dropdown-menu c-menu-type-classic c-pull-left ">
                                 <li class="c-menu-type-classic"><a rel="" href="/blogs" class="">Blog</a></li>
@@ -706,6 +708,25 @@
     gtag('js', new Date());
 
     gtag('config', 'G-MZBLL7R7EG');
+</script>
+<script>
+    function video_highligh(id) {
+        var id = $id;
+        // alert(id);
+        $.ajax({
+            url: route('show_video'),
+            method: 'POST',
+            dataType: 'json',
+            data: { id: $id },
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            success: function (data) {
+                $("video_title").html(data.video_title);
+                $("video_description").html(data.video_description);
+                $("video_link").html(data.video_link);
+                $('#video_highlight').modal('show');
+            },
+        });
+    }
 </script>
 </body>
 </html>
