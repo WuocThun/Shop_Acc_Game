@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,14 @@ Route::get( '/danh-muc-game/{slug}', [ IndexController::class, 'danhmuc' ] )
      ->name( 'danhmuc' ); // dich vu con
 Route::get( '/danh-muc/{slug}', [ IndexController::class, 'danhmuccon' ] )
      ->name( 'danhmuccon' ); // dich vu con
-Route::get('/blogs',[IndexController::class, 'blogs'])->name( 'blogs' );
-Route::get('/blogs/{slug}',[IndexController::class, 'blog_detail'])->name( 'blog_detail' );
+Route::get( '/blogs', [ IndexController::class, 'blogs' ] )->name( 'blogs' );
+Route::get( '/blogs/{slug}', [ IndexController::class, 'blog_detail' ] )
+     ->name( 'blog_detail' );
 Auth::routes();
 
 Route::get( '/home', [ HomeController::class, 'index' ] )->name( 'home' );
 //category
 Route::resource( '/category', CategoryController::class );
 Route::resource( '/slider', SliderController::class );
-Route::resource( '/blog',BlogController::class);
+Route::resource( '/blog', BlogController::class );
+Route::resource( '/video', VideoController::class );

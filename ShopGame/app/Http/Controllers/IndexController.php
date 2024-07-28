@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Blog;
 use App\Models\Slider;
-
+use App\Models\Video;
 class IndexController extends Controller {
 
     public function home() {
