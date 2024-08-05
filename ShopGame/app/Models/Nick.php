@@ -5,32 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Nick extends Model
 {
 
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = 'categories';
+    protected $table = 'nick';
     protected $fillable
         = [
             'title',
+            'attribute',
+            'category_id',
+            'price',
+            'status',
             'description',
             'image',
-            'status',
-            'order_category',
+            'ms',
         ];
 
-    public function accessories()
+    public
+    function Category()
     {
         return $this->belongsTo(Category::class);
     }
 
-
-public
-function nick()
-{
-    return $this->hasMany(Nick::class);
 }
-}
-

@@ -12,8 +12,7 @@ use App\Models\Video;
 class IndexController extends Controller {
 
     public function home() {
-        $slider   = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )
-                          ->get();
+        $slider   = Slider::orderBy( 'id', 'desc' )->where( 'status', 1 )->get();
         $category = Category::orderBy( 'id', 'desc' )->get();
 
         return view( 'pages.home', compact( 'category', 'slider' ) );

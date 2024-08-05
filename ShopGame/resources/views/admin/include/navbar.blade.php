@@ -19,6 +19,8 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('accessories.index')}}">Phụ kiện</a>
+        </li>  <li class="nav-item active">
+            <a class="nav-link" href="{{route('nick.index')}}">Nick</a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="{{route('blog.index')}}">Blog</a>

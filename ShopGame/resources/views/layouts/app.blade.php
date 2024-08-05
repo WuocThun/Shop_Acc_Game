@@ -138,9 +138,27 @@
         //In slug ra textbox có id “slug”
         document.getElementById('convert_slug').value = slug;
     }
-
-
 </script>
+<script>
+    $('.choose_category').change(function () {
+        var category_id = $(this).val();
+        if (category_id == '0') {
+            alert('Vui long chon the loai');
+        } else {
+            $.ajax({
+                url: "{{route('choose_category')}}",
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {category_id: category_id},
+                success: function(data){
+                    $("#show_attribute").html(data)
+                }
+            });
+        }
 
+    });
+</script>
 </body>
 </html>
