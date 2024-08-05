@@ -25,15 +25,16 @@ Route::get('/dich-vu', [IndexController::class, 'dichvu'])
      ->name('dichvu');// tat ca dich vu thuoc game
 Route::get('/dich-vu/{slug}', [IndexController::class, 'dichvucon'])
      ->name('dichvucon'); // dich vu con
-Route::get('/danh-muc-game/{slug}', [IndexController::class, 'danhmuc'])
+Route::get('/danh-muc-game/{slug}', [IndexController::class, 'danhmucgame'])
      ->name('danhmuc'); // dich vu con
-Route::get('/danh-muc/{slug}', [IndexController::class, 'danhmuccon'])
+Route::get('/accgame/{slug}', [IndexController::class, 'acc'])
      ->name('danhmuccon'); // dich vu con
 Route::get('/blogs', [IndexController::class, 'blogs'])->name('blogs');;
 Route::get('/videos', [IndexController::class, 'video_hightlight'])
      ->name('video_hightlight');
 //Route::get('/show_video', [IndexController::class, 'show_video'])
 //     ->name('show_video');
+
 Route::get('/blogs/{slug}', [IndexController::class, 'blog_detail'])
      ->name('blog_detail');
 Auth::routes();
