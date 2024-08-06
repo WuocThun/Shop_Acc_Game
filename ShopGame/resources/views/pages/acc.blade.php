@@ -353,7 +353,7 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="classWithPad">
                             <div class="image">
-                                <a href="/acc/518480">
+                                <a href="{{route('accms',[$nick->ms])}}">
                                     <!-- <a href="/acc/518480"> -->
                                     <img src="{{asset('uploads/nick/'.$nick->image)}}" alt="png-image">
                                     <span class="ms">MS: {{$nick->ms}}</span>
@@ -395,7 +395,7 @@
                                     </div>
                                     <div class="col-xs-6 ">
                                         <div class="view">
-                                            <a href="#">Chi tiết</a>
+                                            <a href="{{route('accms',[$nick->ms])}}">Chi tiết</a>
                                             <!-- <a href="/acc/518480">Chi tiết</a> -->
                                         </div>
                                     </div>

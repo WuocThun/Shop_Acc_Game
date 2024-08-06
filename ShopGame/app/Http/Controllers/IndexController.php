@@ -23,6 +23,7 @@ class IndexController extends Controller
     public function dichvu()
     {
         $slider = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+
         return view('pages.services', compact('slider'));
     }
 
@@ -30,7 +31,7 @@ class IndexController extends Controller
     {
         $slider = Slider::orderBy('id', 'desc')->where('status', 1)->get();
 
-        return view('pages.acc', compact('slug', 'slider'));
+        return view('pages.sub_services', compact('slug', 'slider'));
     }
 
     public function danhmucgame($slug)
@@ -38,16 +39,17 @@ class IndexController extends Controller
         $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
         $category = Category::where('slug', $slug)->first();
 
-        return view('pages.category', compact('slug', 'slider','category'));
+        return view('pages.category', compact('slug', 'slider', 'category'));
     }
 
     public function acc($slug)
     {
-        $category= Category::where('slug', $slug)->first();
-        $nick = Nick::where('category_id',$category->id)->where('status',1)->paginate(16);
-        $slider = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+        $category = Category::where('slug', $slug)->first();
+        $nick     = Nick::where('category_id', $category->id)
+                        ->where('status', 1)->paginate(16);
+        $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
 
-        return view('pages.acc', compact('slug', 'slider','nick','category'));
+        return view('pages.acc', compact('slug', 'slider', 'nick', 'category'));
     }
 
     public function blogs()
@@ -59,6 +61,15 @@ class IndexController extends Controller
         return view('pages.blog', compact('slider', 'blog'
         //            ,'blog_huongdan'
         ));
+    }
+
+    public function accms($ms)
+    {
+        $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+        $nick = Nick::where('ms', $ms)->first();
+        $nick_game = Nick::find($nick->id);
+        $category = Category::where('id',$nick->category_id)->first();
+        return view('pages.accms', compact( 'slider', 'nick','category'));
     }
 
     public function video_hightlight()

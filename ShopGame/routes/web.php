@@ -29,6 +29,8 @@ Route::get('/danh-muc-game/{slug}', [IndexController::class, 'danhmucgame'])
      ->name('danhmuc'); // dich vu con
 Route::get('/accgame/{slug}', [IndexController::class, 'acc'])
      ->name('danhmuccon'); // dich vu con
+Route::get('/acc/{ms}', [IndexController::class, 'accms'])
+     ->name('accms');
 Route::get('/blogs', [IndexController::class, 'blogs'])->name('blogs');;
 Route::get('/videos', [IndexController::class, 'video_hightlight'])
      ->name('video_hightlight');

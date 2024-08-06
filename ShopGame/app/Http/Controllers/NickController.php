@@ -161,7 +161,7 @@ class NickController extends Controller
         );
         $data              = $request->all();
         $nick              = Nick::find($id);
-        $nick->ms          = random_int(100000, 999999);
+        $nick->ms          = $nick->ms;
         $nick->title       = $data['title'];
         $nick->description = $data['description'];
         //        $nick->category_id = $data['category_id'];
