@@ -37,23 +37,22 @@ class GalleryController extends Controller
     {
         $get_image = $request->image;
         $nick_id   = $request->nick_id;
-        dd($nick_id);
-//        $nick      = Nick::find($nick_id);
-//        if ($get_image) {
-//            foreach ($get_image as $key => $img) {
-//                $path           = 'uploads/gallery/';
-//                $get_name_image = $img->getClientOriginalName();
-//                $name_image     = current(explode('.', $get_name_image));
-//                $new_image      = $name_image . rand(0, 99) . '.'
-//                                  . $img->getClientOriginalExtension();
-//                $img->move($path, $new_image);
-//                $gallery          = new Gallery();
-//                $gallery->title   = $nick->title;
-//                $gallery->nick_id = $nick->id;
-//                $gallery->image   = $new_image;
-//                $gallery->save();
-//            }
-//        }
+        $nick      = Nick::find($nick_id);
+        if ($get_image) {
+            foreach ($get_image as $key => $img) {
+                $path           = 'uploads/gallery/';
+                $get_name_image = $img->getClientOriginalName();
+                $name_image     = current(explode('.', $get_name_image));
+                $new_image      = $name_image . rand(0, 99) . '.'
+                                  . $img->getClientOriginalExtension();
+                $img->move($path, $new_image);
+                $gallery          = new Gallery();
+                $gallery->title   = $nick->title;
+                $gallery->nick_id = $nick->id;
+                $gallery->image   = $new_image;
+                $gallery->save();
+            }
+        }
             return redirect()->back();
     }
 
