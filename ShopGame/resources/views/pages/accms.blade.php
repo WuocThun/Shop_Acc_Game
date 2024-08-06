@@ -141,12 +141,13 @@
             </div>
         </div>
         <div class="container m-t-20 content_post">
-            <p>
-                <a rel="gallery1" data-fancybox="images" href="img/1.jpg">
-                    <img class="img-responsive img-thumbnail" src="img/1.jpg" alt="png-image">
-                </a>
-            </p>
-
+            @foreach ($gallery as $key => $gly)
+                <p>
+                    <a rel="gallery1" data-fancybox="images" href="{{asset('uploads/gallery/'.$gly->image)}}">
+                        <img class="img-responsive img-thumbnail" src="{{asset('uploads/gallery/'.$gly->image)}}" alt="{{$gly->title}}">
+                    </a>
+                </p>
+            @endforeach
             <div class="buy-footer" style="text-align: center">
                 <button type="button"
                         class="btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 load-modal"

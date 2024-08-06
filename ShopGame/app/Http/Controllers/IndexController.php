@@ -8,7 +8,7 @@ use App\Models\Blog;
 use App\Models\Slider;
 use App\Models\Video;
 use App\Models\Nick;
-
+use App\Models\Gallery;
 class IndexController extends Controller
 {
 
@@ -67,9 +67,11 @@ class IndexController extends Controller
     {
         $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
         $nick = Nick::where('ms', $ms)->first();
+        $gallery = Gallery::where('nick_id',$nick->id)->orderBy('id','desc')->get();
+
         $nick_game = Nick::find($nick->id);
         $category = Category::where('id',$nick->category_id)->first();
-        return view('pages.accms', compact( 'slider', 'nick','category'));
+        return view('pages.accms', compact( 'slider', 'nick','category','gallery'));
     }
 
     public function video_hightlight()

@@ -37,6 +37,37 @@
                         </form>
 
                     </div>
+                    <table id="myTable" class="table">
+                        <thead>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tên gallery</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Hành động</th>
+                        </thead>
+                        <tbody>
+                        @foreach($all_galary as $key =>$cate )
+                            <tr>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$cate->title}}</td>
+                                <td><img width="200px" height="100px"
+                                         src="{{asset('uploads/gallery/'.$cate->image)}}" alt=""></td>
+                                <TD>
+                                    <a class="btn btn-warning"
+                                       href="{{route('gallery.edit',$cate->id)}}">Sửa</a>
+                                    <form method="post" action="{{route('gallery.destroy',[$cate->id])}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button onclick="return confirm('Bạn có muốn xoá?')"
+                                                class="btn btn-danger">Xoá
+                                        </button>
+                                    </form>
+                                </TD>
+                            </tr>
+                        @endforeach
+                        </tbody>
+
+                    </table>
+
                 </div>
             </div>
         </div>

@@ -37,22 +37,23 @@ class GalleryController extends Controller
     {
         $get_image = $request->image;
         $nick_id   = $request->nick_id;
-        $nick      = Nick::find($nick_id);
-        if ($get_image) {
-            foreach ($get_image as $key => $img) {
-                $path           = 'uploads/gallery/';
-                $get_name_image = $img->getClientOriginalName();
-                $name_image     = current(explode('.', $get_name_image));
-                $new_image      = $name_image . rand(0, 99) . '.'
-                                  . $img->getClientOriginalExtension();
-                $img->move($path, $new_image);
-                $gallery          = new Gallery();
-                $gallery->title   = $nick->title;
-                $gallery->nick_id = $nick->id;
-                $gallery->image   = $new_image;
-                $gallery->save();
-            }
-        }
+        dd($nick_id);
+//        $nick      = Nick::find($nick_id);
+//        if ($get_image) {
+//            foreach ($get_image as $key => $img) {
+//                $path           = 'uploads/gallery/';
+//                $get_name_image = $img->getClientOriginalName();
+//                $name_image     = current(explode('.', $get_name_image));
+//                $new_image      = $name_image . rand(0, 99) . '.'
+//                                  . $img->getClientOriginalExtension();
+//                $img->move($path, $new_image);
+//                $gallery          = new Gallery();
+//                $gallery->title   = $nick->title;
+//                $gallery->nick_id = $nick->id;
+//                $gallery->image   = $new_image;
+//                $gallery->save();
+//            }
+//        }
             return redirect()->back();
     }
 
@@ -77,8 +78,9 @@ class GalleryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.gallery.create');
+        $all_galary = Gallery::where('nick_id', $id)->get();
 
+        return view('admin.gallery.create', compact('all_galary'));
     }
 
     /**
@@ -103,7 +105,14 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gallery        = Gallery::find( $id );
+        $path_unlink = 'uploads/gallery/' . $gallery->image;
+        if ( file_exists( $path_unlink ) ) {
+            unlink( $path_unlink );
+        }
+        $gallery->delete();
+
+        return redirect()->back();
     }
 
 }
