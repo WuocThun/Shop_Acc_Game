@@ -24,6 +24,7 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Mã số</th>
                                     <th scope="col">Tên Nick</th>
+                                    <th scope="col">Thư viện ảnh</th>
                                     <th scope="col">Mô tả</th>
                                     <th scope="col">Hiển thị</th>
                                     <th scope="col">Thuộc tính</th>
@@ -32,49 +33,50 @@
                                     <th scope="col">Hành động</th>
                                     </thead>
                                     <tbody>
-                                    @foreach($nick as $key =>$cate )
-                                        <tr>
-                                            <th scope="row">{{$key+1}}</th>
-                                            <td>{{$cate->title}}</td>
-                                            <td>{{$cate->ms}}</td>
-                                            <td>{{$cate->description}}</td>
-                                            <td>
-                                                @if($cate->status == 1)
-                                                    Hiển thị
-                                                @else
-                                                    Không hiện thị
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @php
-                                                    $attribue = json_decode($cate->attribute, true);
+{{--                                    @foreach($nick as $key =>$cate )--}}
+{{--                                        <tr>--}}
+{{--                                            <th scope="row">{{$key+1}}</th>--}}
+{{--                                            <td>#{{$cate->ms}}</td>--}}
+{{--                                            <td>{{$cate->title}}</td>--}}
+{{--                                            <td><a href="{{route('gallery.edit',[$cate->id])}}" class="btn btn-success btn-sm">Thêm thư viện</a></td>--}}
+{{--                                            <td>{{$cate->description}}</td>--}}
+{{--                                            <td>--}}
+{{--                                                @if($cate->status == 1)--}}
+{{--                                                    Hiển thị--}}
+{{--                                                @else--}}
+{{--                                                    Không hiện thị--}}
+{{--                                                @endif--}}
+{{--                                            </td>--}}
+{{--                                            <td>--}}
+{{--                                                @php--}}
+{{--                                                    $attribue = json_decode($cate->attribute, true);--}}
 
-                                                    if (is_array($attribue)) {
-                                                        foreach ($attribue as $atr) {
-                                                            echo '<span class="badge badge-dark">'.$atr.'</span>';
-                                                        }
-                                                    }else {
-                                                        echo '<p>Chưa có thuộc tính</p>';
-                                                    }
-                                                @endphp
+{{--                                                    if (is_array($attribue)) {--}}
+{{--                                                        foreach ($attribue as $atr) {--}}
+{{--                                                            echo '<span class="badge badge-dark">'.$atr.'</span>';--}}
+{{--                                                        }--}}
+{{--                                                    }else {--}}
+{{--                                                        echo '<p>Chưa có thuộc tính</p>';--}}
+{{--                                                    }--}}
+{{--                                                @endphp--}}
 
-                                            </td>
-                                            <td>{{$cate->category->title}}</td>
-                                            <td><img width="200px" height="100px"
-                                                     src="{{asset('uploads/nick/'.$cate->image)}}" alt=""></td>
-                                            <TD>
-                                                <a class="btn btn-warning"
-                                                   href="{{route('nick.edit',$cate->id)}}">Sửa</a>
-                                                <form method="post" action="{{route('nick.destroy',[$cate->id])}}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button onclick="return confirm('Bạn có muốn xoá?')"
-                                                            class="btn btn-danger">Xoá
-                                                    </button>
-                                                </form>
-                                            </TD>
-                                        </tr>
-                                    @endforeach
+{{--                                            </td>--}}
+{{--                                            <td>{{$cate->category->title}}</td>--}}
+{{--                                            <td><img width="200px" height="100px"--}}
+{{--                                                     src="{{asset('uploads/nick/'.$cate->image)}}" alt=""></td>--}}
+{{--                                            <TD>--}}
+{{--                                                <a class="btn btn-warning"--}}
+{{--                                                   href="{{route('nick.edit',$cate->id)}}">Sửa</a>--}}
+{{--                                                <form method="post" action="{{route('nick.destroy',[$cate->id])}}">--}}
+{{--                                                    @method('DELETE')--}}
+{{--                                                    @csrf--}}
+{{--                                                    <button onclick="return confirm('Bạn có muốn xoá?')"--}}
+{{--                                                            class="btn btn-danger">Xoá--}}
+{{--                                                    </button>--}}
+{{--                                                </form>--}}
+{{--                                            </TD>--}}
+{{--                                        </tr>--}}
+{{--                                    @endforeach--}}
                                     </tbody>
                                 </table>
                                 </th>

@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\AccessoriesController;
 use App\Http\Controllers\NickController;
+use \App\Http\Controllers\GalleryController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -49,4 +50,5 @@ Route::resource('/blog', BlogController::class)->middleware('auth');
 Route::resource('/video', VideoController::class)->middleware('auth');
 Route::resource('/accessories', AccessoriesController::class)->middleware('auth');
 Route::resource('/nick', NickController::class)->middleware('auth');
+Route::resource('/gallery', GalleryController::class)->middleware('auth');
 Route::post('/choose_category', [NickController::class, 'choose_category'])->name('choose_category');
