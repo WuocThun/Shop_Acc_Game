@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 
 use Carbon\Carbon;
 
-class BlogController extends Controller {
+class BlogController extends Controller
+{
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $blog = Blog::orderBy( 'id', 'desc' )->paginate( 5 );
+    public function index(Request $request)
+    {
 
-        return view( 'admin.blog.index', compact( 'blog' ) );
+        $blog = Blog::orderBy('id', 'desc')->paginate(5);
+
+        return view('admin.blog.index', compact('blog'));
     }
 
     /**
@@ -25,8 +28,9 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        return view( 'admin.blog.create' );
+    public function create()
+    {
+        return view('admin.blog.create');
     }
 
     /**
@@ -36,8 +40,9 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function store( Request $request ) {
-        $data              = $request->validate(
+    public function store(Request $request)
+    {
+        $data               = $request->validate(
             [
                 'title'       => 'required|unique:categories|max:255',
                 'description' => 'required|max:255',
@@ -52,27 +57,27 @@ class BlogController extends Controller {
 
             ]
         );
-        $data              = $request->all();
-        $blog              = new Blog();
-        $blog->title       = $data['title'];
-        $blog->description = $data['description'];
+        $data               = $request->all();
+        $blog               = new Blog();
+        $blog->title        = $data['title'];
+        $blog->description  = $data['description'];
         $blog->kind_of_blog = $data['kind_of_blog'];
-        $blog->status      = $data['status'];
-        $blog->slug        = $data['slug'];
+        $blog->status       = $data['status'];
+        $blog->slug         = $data['slug'];
         $blog->dateposted   = Carbon::now();
-        $blog->content     = $data['content'];
-        $get_image         = $request->image;
-        $path              = 'uploads/blog/';
-        $get_name_image    = $get_image->getClientOriginalName();
-        $name_image        = current( explode( '.', $get_name_image ) );
-        $new_image         = $name_image . rand( 0, 99 ) . '.'
-                             . $get_image->getClientOriginalExtension();
-        $get_image->move( $path, $new_image );
+        $blog->content      = $data['content'];
+        $get_image          = $request->image;
+        $path               = 'uploads/blog/';
+        $get_name_image     = $get_image->getClientOriginalName();
+        $name_image         = current(explode('.', $get_name_image));
+        $new_image          = $name_image . rand(0, 99) . '.'
+                              . $get_image->getClientOriginalExtension();
+        $get_image->move($path, $new_image);
         $blog->image = $new_image;
         $blog->save();
 
-        return redirect()->route( 'blog.index' )
-                         ->with( 'status', 'Thêm thành công' );
+        return redirect()->route('blog.index')
+                         ->with('status', 'Thêm thành công');
     }
 
     /**
@@ -82,7 +87,8 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function show( $id ) {
+    public function show($id)
+    {
         //
     }
 
@@ -93,10 +99,11 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id ) {
-        $blog = blog::find( $id );
+    public function edit($id)
+    {
+        $blog = blog::find($id);
 
-        return view( 'admin.blog.edit', compact( 'blog' ) );
+        return view('admin.blog.edit', compact('blog'));
     }
 
     /**
@@ -107,8 +114,9 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function update( Request $request, $id ) {
-        $data              = $request->validate(
+    public function update(Request $request, $id)
+    {
+        $data               = $request->validate(
             [
                 'title'       => 'required|max:255',
                 'description' => 'required|max:255',
@@ -120,32 +128,32 @@ class BlogController extends Controller {
 
             ]
         );
-        $data              = $request->all();
-        $blog              = blog::find( $id );
-        $blog->title       = $data['title'];
-        $blog->slug        = $data['slug'];
-        $blog->description = $data['description'];
-        $blog->status      = $data['status'];
+        $data               = $request->all();
+        $blog               = blog::find($id);
+        $blog->title        = $data['title'];
+        $blog->slug         = $data['slug'];
+        $blog->description  = $data['description'];
+        $blog->status       = $data['status'];
         $blog->kind_of_blog = $data['kind_of_blog'];
 
         $blog->content = $data['content'];
         $get_image     = $request->image;
-        if ( $get_image ) {
+        if ($get_image) {
             $path_unlink = 'uploads/blog/' . $blog->image;
-            if ( file_exists( $path_unlink ) ) {
-                unlink( $path_unlink );
+            if (file_exists($path_unlink)) {
+                unlink($path_unlink);
             }
             $path           = 'uploads/blog/';
             $get_name_image = $get_image->getClientOriginalName();
-            $name_image     = current( explode( '.', $get_name_image ) );
-            $new_image      = $name_image . rand( 0, 99 ) . '.'
+            $name_image     = current(explode('.', $get_name_image));
+            $new_image      = $name_image . rand(0, 99) . '.'
                               . $get_image->getClientOriginalExtension();
-            $get_image->move( $path, $new_image );
+            $get_image->move($path, $new_image);
             $blog->image = $new_image;
         }
         $blog->save();
 
-        return redirect()->back()->with( 'status', 'Cập nhật thành công' );
+        return redirect()->back()->with('status', 'Cập nhật thành công');
     }
 
     /**
@@ -155,11 +163,12 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id ) {
-        $blog        = blog::find( $id );
+    public function destroy($id)
+    {
+        $blog        = blog::find($id);
         $path_unlink = 'uploads/blog/' . $blog->image;
-        if ( file_exists( $path_unlink ) ) {
-            unlink( $path_unlink );
+        if (file_exists($path_unlink)) {
+            unlink($path_unlink);
         }
         $blog->delete();
 

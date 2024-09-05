@@ -9,15 +9,40 @@ use App\Models\Slider;
 use App\Models\Video;
 use App\Models\Nick;
 use App\Models\Gallery;
+use Illuminate\Support\Facades\Auth;
+
 class IndexController extends Controller
 {
 
+    //    public  $id_Auth = Auth::user()->id;
+
     public function home()
+    {
+//        $author_id = session(['author_id' => ]);
+        if (isset(Auth::user()->id)) {
+            $author_id = session(['author_id' => Auth::user()->id]);
+            $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+            $category = Category::orderBy('id', 'desc')->get();
+            return view('pages.home', compact('category', 'slider', 'author_id'));
+
+        } else {
+            $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+            $category = Category::orderBy('id', 'desc')->get();
+            $author_id = '0';
+        $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+        $category = Category::orderBy('id', 'desc')->get();
+
+        return view('pages.home', compact('category', 'slider', 'author_id'));
+        };
+
+    }
+
+    public function gioithieu()
     {
         $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
         $category = Category::orderBy('id', 'desc')->get();
 
-        return view('pages.home', compact('category', 'slider'));
+        return view('pages.gioithieu', compact('category', 'slider'));
     }
 
     public function dichvu()
@@ -52,9 +77,13 @@ class IndexController extends Controller
         return view('pages.acc', compact('slug', 'slider', 'nick', 'category'));
     }
 
-    public function blogs()
+    public function blogs(Request $request)
     {
         $blog = Blog::orderBy('id', 'desc')->paginate(10);
+        if (isset($request->key) && $request->key != '') {
+            $blog = Blog::where('slug', 'like', '%' . $request->key . '%')
+                        ->get();
+        };
         //        $blog_huongdan   = Blog::orderBy( 'id', 'desc' )->where( 'kind_of_blog', 'huongdan' )->get();
         $slider = Slider::orderBy('id', 'desc')->where('status', 1)->get();
 
@@ -65,13 +94,16 @@ class IndexController extends Controller
 
     public function accms($ms)
     {
-        $slider   = Slider::orderBy('id', 'desc')->where('status', 1)->get();
-        $nick = Nick::where('ms', $ms)->first();
-        $gallery = Gallery::where('nick_id',$nick->id)->orderBy('id','desc')->get();
+        $slider  = Slider::orderBy('id', 'desc')->where('status', 1)->get();
+        $nick    = Nick::where('ms', $ms)->first();
+        $gallery = Gallery::where('nick_id', $nick->id)->orderBy('id', 'desc')
+                          ->get();
 
         $nick_game = Nick::find($nick->id);
-        $category = Category::where('id',$nick->category_id)->first();
-        return view('pages.accms', compact( 'slider', 'nick','category','gallery'));
+        $category  = Category::where('id', $nick->category_id)->first();
+
+        return view('pages.accms',
+            compact('slider', 'nick', 'category', 'gallery'));
     }
 
     public function video_hightlight()

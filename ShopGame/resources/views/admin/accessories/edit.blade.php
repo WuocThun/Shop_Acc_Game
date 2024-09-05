@@ -53,7 +53,6 @@
                                 <label for="exampleFormControlSelect1">Thuộc game</label>
                                 <select required class="form-control" name="category_id">
                                     @foreach($categories as $category => $cat)
-                                        <option value="{{$cat->id ==$accessories->category_id ? 'selected':''}}" selected>Hiển thị</option>
                                         <option {{$cat->id ==$accessories->category_id ? 'selected':''}} value="{{$cat->id}}" >{{$cat->title}}</option>
                                     @endforeach
                                 </select>
