@@ -177,19 +177,19 @@
         <div class="container">
             <!-- BEGIN: INLINE NAV -->
             <nav class="c-top-menu c-pull-left">
-{{--                <ul class="c-icons c-theme-ul">--}}
-{{--                    <li>--}}
-{{--                        <a href="https://www.facebook.com/CSKH-Tr%C3%B9m-C%C3%A1c-Game-Online-102414321166624/"--}}
-{{--                           target="_blank">--}}
-{{--                            <i class="icon-social-facebook"></i>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="" target="_blank">--}}
-{{--                            <i class="icon-social-youtube"></i>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+                {{--                <ul class="c-icons c-theme-ul">--}}
+                {{--                    <li>--}}
+                {{--                        <a href="https://www.facebook.com/CSKH-Tr%C3%B9m-C%C3%A1c-Game-Online-102414321166624/"--}}
+                {{--                           target="_blank">--}}
+                {{--                            <i class="icon-social-facebook"></i>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                    <li>--}}
+                {{--                        <a href="" target="_blank">--}}
+                {{--                            <i class="icon-social-youtube"></i>--}}
+                {{--                        </a>--}}
+                {{--                    </li>--}}
+                {{--                </ul>--}}
             </nav>
             <!-- END: INLINE NAV -->
             <!-- BEGIN: INLINE NAV -->
@@ -271,24 +271,17 @@
                     <ul class="nav navbar-nav c-theme-nav">
                         <li class="c-menu-type-classic"><a rel="" href="/" class="c-link dropdown-toggle ">Trang chủ</a>
                         </li>
-                        <li class="c-menu-type-classic"><a rel="" href="/dich-vu" class="c-link dropdown-toggle ">Dịch
-                                vụ game</a></li>
-                        <li class="c-menu-type-classic"><a rel="" href="/mua-the" class="c-link dropdown-toggle ">Mua
-                                thẻ</a></li>
-                        <li class="c-menu-type-classic">
-                            <a rel="" href="#" class="c-link dropdown-toggle ">Nạp tiền<span
-                                    class="c-arrow c-toggler"></span></a>
-                            <ul id="children-of-41" class="dropdown-menu c-menu-type-classic c-pull-left ">
-                                <li class="c-menu-type-classic"><a rel="" href="/nap-the" class="">Nạp thẻ
-                                        c&agrave;o</a></li>
-                                <li class="c-menu-type-classic"><a rel="" href="/recharge" class="">Nạp ATM tự động</a>
-                                </li>
-                                <li class="c-menu-type-classic"><a target='_blank' rel=""
-                                                                   href="https://nick.vn/blog/huong-dan-nap-tien-tu-dong-bang-atm-vao-nickvn"
-                                                                   class="">Hướng dẫn nạp ATM tự động</a></li>
-                            </ul>
-                        </li>
-{{--                        <li><a href="{{route('video_hightlight')}}" class="c-link dropdown-toggle">Videos</a></li>--}}
+                        <li class="c-menu-type-classic"><a rel="" href="/gioithieu" class="c-link dropdown-toggle ">Giới
+                                thiệu</a></li>
+{{--                        <li class="c-menu-type-classic"><a rel="" href="/mua-the" class="c-link dropdown-toggle ">Mua--}}
+{{--                                thẻ</a></li>--}}
+{{--                        <li class="c-menu-type-classic">--}}
+{{--                            <a rel="" href="{{url('/allBillCheck',$author_id)}}" class="c-link dropdown-toggle ">Giỏ--}}
+{{--                                hàng đã mua<span--}}
+{{--                                    class="c-arrow c-toggler"></span></a>--}}
+
+{{--                        </li>--}}
+                        {{--                        <li><a href="{{route('video_hightlight')}}" class="c-link dropdown-toggle">Videos</a></li>--}}
                         <li class="c-menu-type-classic">
                             <a rel="" href="#" class="c-link dropdown-toggle ">Tin tức<span
                                     class="c-arrow c-toggler"></span></a>
@@ -302,14 +295,56 @@
                                 {{--                                @endforeach--}}
                             </ul>
                         </li>
-                        <li><a href="/login"
-                               class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
-                                <i class="icon-user"></i> Đăng nhập</a>
-                        </li>
-                        <li><a href="/register"
-                               class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
-                                <i class="icon-key icons"></i> Đăng ký</a>
-                        </li>
+                        {{--                        <li>--}}
+                        {{--                            <a href="/login"--}}
+                        {{--                               class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">--}}
+                        {{--                                <i class="icon-user"></i> Đăng nhập</a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                               <a href="/register"--}}
+                        {{--                               class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">--}}
+                        {{--                                <i class="icon-key icons"></i> Đăng ký</a>--}}
+                        {{--                        </li>--}}
+                        @if(Auth::check())
+                            <!-- Nếu người dùng đã đăng nhập -->
+                            <li class="nav-item">
+                                <span
+                                    class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                                    <i class="icon-user"></i> Xin chào {{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                                <ul id="children-of-41" class="dropdown-menu c-menu-type-classic c-pull-left ">
+                                    <li class="c-menu-type-classic">
+
+                                        <a rel="" href="{{url('/allBillCheck',[Auth::user()->id])}}"
+                                           class="c-link dropdown-toggle ">Giỏ hàng đã mua<span
+                                                class="c-arrow c-toggler"></span></a>
+
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                            class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        @else
+                            <!-- Nếu người dùng chưa đăng nhập -->
+                            <li>
+                                <a href="/login"
+                                   class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                                    <i class="icon-user"></i> Đăng nhập</a>
+                            </li>
+                            <li>
+                                <a href="/register"
+                                   class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                                    <i class="icon-key icons"></i> Đăng ký</a>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
                 <nav
@@ -317,8 +352,8 @@
                     <ul class="nav navbar-nav c-theme-nav">
                         <li class="c-menu-type-classic"><a rel="" href="/" class="c-link dropdown-toggle ">Trang chủ</a>
                         </li>
-                        <li class="c-menu-type-classic"><a rel="" href="/dich-vu" class="c-link dropdown-toggle ">Dịch
-                                vụ game</a></li>
+                        <li class="c-menu-type-classic"><a rel="" href="/gioithieu" class="c-link dropdown-toggle ">Giới
+                                thiệu</a></li>
                         <li class="c-menu-type-classic"><a rel="" href="/mua-the" class="c-link dropdown-toggle ">Mua
                                 thẻ</a></li>
                         <li class="c-menu-type-classic">
@@ -422,23 +457,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="c-container c-first">
-                        <!-- <div class="c-content-title-1">
-                           <h3 class="c-font-uppercase c-font-bold c-font-white">Về <span class="c-theme-font">Nick.vn</span>
 
-                               <a target="_blank"  href="//www.dmca.com/Protection/Status.aspx?ID=6766daa6-8986-40c5-b282-a9c9e6a883de" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/_dmca_premi_badge_1.png?ID=6766daa6-8986-40c5-b282-a9c9e6a883de"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
-
-                           </h3>
-                           <div class="c-line-left hide"></div>
-                           <p class="c-text">
-                               Chuyên mua bán nick các game... an toàn. Tin cậy nhanh chóng. Giao dịch tự động 24/24</p>
-                           </div>
-                           <ul class="c-links">
-                           <li><a href="/gioi-thieu">Giới thiệu</a></li>
-                           <li><a href="/huong-dan-mua-tai-khoan">Hướng Dẫn Mua Tài Khoản</a></li>
-                           <li><a href="/huong-dan-nick-mua-tra-gop">Hướng Dẫn Mua Nick Trả Góp</a></li>
-                           <li><a href="/tuyen-dai-ly-cung-cap-nick-tai-nickvn">Tuyển Đại Lý cung cấp nick tại Nick.vn</a></li>
-                           <li><a href="/lien-he-gop-y"> Liên hệ/góp ý</a></li>
-                           </ul> -->
                         <p><span style="color:#ffffff"><span
                                     style="font-size:22px"><strong>&nbsp;</strong></span></span><span
                                 style="color:#16a085"><span
@@ -453,23 +472,6 @@
                                     style="color:#ffffff">,&nbsp;an to&agrave;n,&nbsp;tin cậy, nhanh ch&oacute;ng. Giao dịch tự động 24/24</span></span>
                         </p>
                         <ul>
-{{--                            <li><strong><span style="font-size:14px"><a href="/gioi-thieu" target="_blank"><span--}}
-{{--                                                style="color:#ffffff">Giới thiệu</span></a></span></strong></li>--}}
-{{--                            <li><strong><span style="font-size:14px"><a href="/huong-dan-mua-tai-khoan" target="_blank"><span--}}
-{{--                                                style="color:#ffffff">Hướng Dẫn Mua T&agrave;i Khoản</span></a></span></strong>--}}
-{{--                            </li>--}}
-{{--                            <li><strong><span style="font-size:14px"><a href="/huong-dan-nick-mua-tra-gop"--}}
-{{--                                                                        target="_blank"><span style="color:#ffffff">Hướng Dẫn Mua Nick Trả G&oacute;p</span></a></span></strong>--}}
-{{--                            </li>--}}
-{{--                            <li><strong><span style="font-size:14px"><a href="/tuyen-dai-ly-cung-cap-nick-tai-nickvn"--}}
-{{--                                                                        target="_blank"><span style="color:#ffffff">Tuyển Đại L&yacute; cung cấp nick tại Nick.vn</span></a></span></strong>--}}
-{{--                            </li>--}}
-{{--                            <li><strong><span style="font-size:14px"><a href="/lien-he-gop-y" target="_blank"><span--}}
-{{--                                                style="color:#ffffff">Li&ecirc;n hệ</span></a></span></strong></li>--}}
-{{--                            <li><strong><a href="https://gamecuoi.com/" target="_blank"><span--}}
-{{--                                            style="color:#ffffff"><span--}}
-{{--                                                style="font-size:14px">Tin tức&nbsp;game</span></span></a></strong>--}}
-{{--                            </li>--}}
                         </ul>
                     </div>
                 </div>
@@ -691,9 +693,9 @@
             data: { id: $id },
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             success: function (data) {
-                $("video_title").html(data.video_title);
-                $("video_description").html(data.video_description);
-                $("video_link").html(data.video_link);
+                $('video_title').html(data.video_title);
+                $('video_description').html(data.video_description);
+                $('video_link').html(data.video_link);
                 $('#video_highlight').modal('show');
             },
         });

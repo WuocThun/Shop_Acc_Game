@@ -46,6 +46,7 @@
                         </thead>
                         <tbody>
                         @foreach($all_galary as $key =>$cate )
+{{--                            {{dd($cate)}}--}}
                             <tr>
                                 <th scope="row">{{$key+1}}</th>
                                 <td>{{$cate->title}}</td>

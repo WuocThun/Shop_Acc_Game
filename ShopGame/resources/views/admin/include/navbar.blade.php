@@ -26,7 +26,7 @@
             <a class="nav-link" href="{{route('blog.index')}}">Blog</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="#">Dịch vụ game</a>
+            <a class="nav-link" href="{{url('/statistic')}}">Thống kê</a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="#">Nick game</a>
