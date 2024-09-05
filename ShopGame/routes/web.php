@@ -10,6 +10,8 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\AccessoriesController;
 use App\Http\Controllers\NickController;
 use \App\Http\Controllers\GalleryController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -37,7 +39,15 @@ Route::get('/videos', [IndexController::class, 'video_hightlight'])
      ->name('video_hightlight');
 //Route::get('/show_video', [IndexController::class, 'show_video'])
 //     ->name('show_video');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
 
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+});
 Route::get('/blogs/{slug}', [IndexController::class, 'blog_detail'])
      ->name('blog_detail');
 Auth::routes();
